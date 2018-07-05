@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="alert alert-info alert-with-icon" data-notify="container">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <i class="glyphicon glyphicon-info-sign"></i>
+      <h4 align="center"><span data-notify="message"><strong>{{ \Session::get('message') }}</strong></span></h4>
+    </div>
+  </div>
+</div>
