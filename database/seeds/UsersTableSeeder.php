@@ -11,28 +11,51 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('users')->insert([
-            'name' => 'usuario general',
-            'email' => 'user@mail.com',
+        DB::table('users')->insert([
+            'name' => 'Daniela Guzman',
+            'email' => 'daniela@mail.com',
             'password' => bcrypt('123456'),
-            //'change' => 0,
-            //'role' => 0,
-            'consorcio_id' => 1,
+            'consortiums_id' => 1,
             'avatar' => 'user.png',
-            'uf_number' => '001'
-            //'active' => 0
+            'uf_number' => '001-U1'
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'Alejandra Gonzales',
+            'email' => 'alejandra@mail.com',
+            'password' => bcrypt('123456'),
+            'consortiums_id' => 2,
+            'avatar' => 'user.png',
+            'uf_number' => '001-U2'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Rafael Ramirez',
+            'email' => 'rafahenra@mail.com',
+            'password' => bcrypt('123456'),
+            'consortiums_id' => 1,
+            'avatar' => 'user.png',
+            'uf_number' => '002-U1'
         ]);
 
      	DB::table('users')->insert([
-            'name' => 'administrador',
-            'email' => 'admin@mail.com',
+            'name' => 'Cristiam Henriquez',
+            'email' => 'cristhen@mail.com',
             'password' => bcrypt('123456'),
-            //'change' => 0,
             'role' => 1,
-            'consorcio_id' => 0,
+            'consortiums_id' => 1,
             'avatar' => 'admin.png',
-            'uf_number' => '001-admin'
-            //'active' => 0
+            'uf_number' => '001-A1'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Orlando Henriquez',
+            'email' => 'orlando@mail.com',
+            'password' => bcrypt('123456'),
+            'role' => 1,
+            'consortiums_id' => 2,
+            'avatar' => 'admin.png',
+            'uf_number' => '001-A2'
         ]);
     }
 }

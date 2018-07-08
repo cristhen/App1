@@ -21,7 +21,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->tinyInteger('change')->default(0);
             $table->tinyInteger('role')->default(0);
-            $table->integer('consorcio_id');
+            $table->integer('consortiums_id')->unsigned();
+            $table->foreign('consortiums_id')
+                  ->references('id')
+                  ->on('consortiums')
+                  ->onDelete('restrict');
             $table->string('avatar');
             $table->string('uf_number');
             $table->tinyInteger('active')->default(0);

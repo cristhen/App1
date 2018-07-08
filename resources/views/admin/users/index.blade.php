@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<h1 class="page-header">Usuarios UF</h1>
-	@if(\Session::has('message'))
+<div class="col-sm-12 col-md-9">
+	<h3 class="page-header" style="margin-top: 0%">Usuarios UF</h3>
+    <button data-toggle="modal" data-target="#user" class="btn btn-primary">Usuarios</button><br><br>
+	
+    @if(\Session::has('message'))
     	@include('layouts.message')
 	@endif
 
@@ -11,12 +13,6 @@
         @include('layouts.errors')
     @endif
 	
-	<div class="center">
-		<button data-toggle="modal" data-target="#user" class="btn btn-primary block">Usuarios</button>
-	</div>
-	
-	<hr>
-
 	<table id="consortium" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -55,7 +51,7 @@
                     @endif
                 </td>
                 <th>
-                	<a href="{{ route('viewUser',$user->id) }}" class="btn btn-info btn-sm">Editar</a>
+                	<a href="{{ route('users.edit',$user->id) }}" class="btn btn-info btn-sm">Editar</a>
                 	<button data-toggle="modal" data-target="#delete-{{$user->id}}" class="btn btn-danger btn-sm">Eliminar</button>
             	</th>
             </tr>
@@ -87,7 +83,7 @@
             </div>
             <br>
             
-            {!! Form::open(['route' => 'newUser', 'files' => 'true']) !!}
+            {!! Form::open(['route' => 'users.store', 'files' => 'true']) !!}
             	{!! Form::token() !!}
             	<div class="modal-body" >
                     @include('admin.users.partials.form')

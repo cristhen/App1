@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Consorcio extends Model
+class Election extends Model
 {
-	protected $table = 'consorcios';
+    protected $table = 'elections';
 
     protected $fillable = [
-        'name'
+        'name',
+        'description'
     ];
 }

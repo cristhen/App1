@@ -57,15 +57,12 @@
 
 </div>
 <div class="panel-footer">
-    <button type="submit" class="btn btn-primary btn-sm">
+    <button type="submit" class="btn btn-primary btn-sm pull-right">
       <span class="glyphicon glyphicon-ok"></span> Guardar 
     </button>
         
-    <button type="reset" class="btn btn-danger btn-sm">
+    <button type="reset" class="btn btn-danger btn-sm pull-left">
       <span class="glyphicon glyphicon-remove"></span> Cancelar 
-    </button>
-        
-    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">   Close
-    </button>
+    </button><br><br>
 </div>
 

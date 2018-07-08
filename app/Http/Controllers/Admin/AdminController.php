@@ -26,66 +26,6 @@ class AdminController extends Controller
         return view('admin/index');
     }
 
-    public function users()
-    {
-        $users = User::orderBy('id','DESC')->get();
-        $consortiums = Consorcio::orderBy('id','DESC')->pluck('name','id')->all();
-        
-        return view('admin/users/index',compact('users','consortiums'));   
-    }
-
-    public function newUser(UserFormRequest $request)
-    {
-        $user = new User;
-
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = bcrypt($request->get('pasword'));
-        $user->role = $request->get('role');
-        $user->consorcio_id = $request->get('consorcio_id');
-        if (Input::hasFile('avatar')) {
-            $file = Input::file('avatar');
-            $file->move(public_path().'/img/user/',$file->getClientOriginalName());
-            $user->avatar = $file->getClientOriginalName();
-        }
-
-        $user->uf_number = str_random(10);
-
-        $register = $user->save();
-
-        $message = $register ? 'Usuario registrado correctamente' : 'El Usuario NO pudo registrarse';
-        return redirect()->route('users')->with('message', $message);
-
-    }
-
-    public function editUser(UserFormRequest $request, User $user)
-    {
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = bcrypt($request->get('pasword'));
-        $user->role = $request->get('role');
-        $user->consorcio_id = $request->get('consorcio_id');
-        if (Input::hasFile('avatar')) {
-            $file = Input::file('avatar');
-            $file->move(public_path().'/img/user/',$file->getClientOriginalName());
-            $user->avatar = $file->getClientOriginalName();
-        }
-
-        $user->uf_number = str_random(10);
-
-        $updated = $user->update();
-
-        $message = $updated ? 'Usuario actualizado correctamente' : 'El Usuario NO pudo actualizarse';
-        return redirect()->route('users')->with('message', $message);
-    }
-
-
-
-
-
-
-
-
 
 
 

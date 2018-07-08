@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConsorciosTable extends Migration
+class CreateElectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateConsorciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('consorcios', function (Blueprint $table) {
+        Schema::create('elections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->tinyInteger('active')->default(0);
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateConsorciosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consorcios');
+        Schema::dropIfExists('elections');
     }
 }

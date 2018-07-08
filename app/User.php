@@ -48,6 +48,12 @@ class User extends Authenticatable
         return $this->active == 1;
     }
 
+    public function consortium()
+    {
+      return $this->belongsTo('App\Consortium');
+    }
+
+
 
     
 

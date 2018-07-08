@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ConsorciosTableSeeder extends Seeder
+class ConsortiumsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,19 +11,19 @@ class ConsorciosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('consorcios')->insert([
+        DB::table('consortiums')->insert([
             'name' => 'Consorcio 1',
         ]);
-        DB::table('consorcios')->insert([
+        DB::table('consortiums')->insert([
             'name' => 'Consorcio 2',
         ]);
-        DB::table('consorcios')->insert([
+        DB::table('consortiums')->insert([
             'name' => 'Consorcio 3',
         ]);
-        DB::table('consorcios')->insert([
+        DB::table('consortiums')->insert([
             'name' => 'Consorcio 4',
         ]);
-        DB::table('consorcios')->insert([
+        DB::table('consortiums')->insert([
             'name' => 'Consorcio 5',
         ]);
     }
