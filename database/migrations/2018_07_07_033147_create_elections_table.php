@@ -17,6 +17,12 @@ class CreateElectionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->tinyInteger('active')->default(0);
+            $table->integer('consortiums_id')->unsigned();
+            $table->foreign('consortiums_id')
+                  ->references('id')
+                  ->on('consortiums')
+                  ->onDelete('restrict');
             $table->timestamps();
         });
     }

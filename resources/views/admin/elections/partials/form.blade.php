@@ -2,6 +2,13 @@
   
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group">
+      {!! Form::label('Consorcio', 'Consorcio') !!}
+      {!! Form::select('consortiums_id', $consortiums, null, ['class' => 'form-control'])!!}
+    </div>
+  </div>
+
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group">
       {!! Form::label('name', 'Nombre de la eleccion') !!}
       {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Ej: Eleccion condominio'])!!}
       <span class="help-block">Slogan de la elección.</span> 

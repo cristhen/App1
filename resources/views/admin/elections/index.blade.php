@@ -8,6 +8,29 @@
     @endif
     
     <button data-toggle="modal" data-target="#election" class="btn btn-primary block">Eleccion +</button><br><br>
+    
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Elecciones Activas</div>
+                <div class="panel-body">
+                    <a class="list-group-item" href="{{ route('elections.active') }}">Votaciones</a>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">Elecciones Finalizadas</div>
+                <div class="panel-body">
+                    <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
          
 </div>
 

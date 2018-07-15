@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
-use App\Consorcio;
+use App\Consortium;
 
 use App\Http\Requests;
 use App\Http\Requests\UserFormRequest;
@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id','DESC')->get();
-        $consortiums = Consorcio::orderBy('id','DESC')->pluck('name','id')->all();
+        $consortiums = Consortium::orderBy('id','DESC')->pluck('name','id')->all();
         
         return view('admin/users/index',compact('users','consortiums')); 
     }
@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('pasword'));
         $user->role = $request->get('role');
-        $user->consorcio_id = $request->get('consorcio_id');
+        $user->consortiums_id = $request->get('consortiums_id');
         if (Input::hasFile('avatar')) {
             $file = Input::file('avatar');
             $file->move(public_path().'/img/user/',$file->getClientOriginalName());
@@ -86,7 +86,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $consortiums = Consorcio::orderBy('id','DESC')->pluck('name','id')->all();
+        $consortiums = Consortium::orderBy('id','DESC')->pluck('name','id')->all();
         return view('admin/users/edit',compact('user','consortiums'));
     }
 
@@ -105,7 +105,7 @@ class UserController extends Controller
             $user->change = 1;
         }
         $user->role = $request->get('role');
-        $user->consorcio_id = $request->get('consorcio_id');
+        $user->consortiums_id = $request->get('consortiums_id');
         if (Input::hasFile('avatar')) {
             $file = Input::file('avatar');
             $file->move(public_path().'/img/user/',$file->getClientOriginalName());

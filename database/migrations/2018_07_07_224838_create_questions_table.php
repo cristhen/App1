@@ -21,7 +21,6 @@ class CreateQuestionsTable extends Migration
                   ->on('elections')
                   ->onDelete('restrict');
             $table->string('question');
-            $table->timestamps();
         });
     }
 

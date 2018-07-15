@@ -14,6 +14,7 @@
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('bootstrap/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/card_alerts.css')}}">
     
   </head>
 

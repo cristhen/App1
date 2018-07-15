@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Consorcio;
+use App\Consortium;
 use App\User;
 
 use App\Http\Requests;
@@ -32,14 +32,14 @@ class AdminController extends Controller
     //METHOD CONSORTIUM
     public function consortiums()
     {
-        $consortium = Consorcio::orderBy('id','DESC')->where('active',0)->get();
+        $consortium = Consortium::orderBy('id','DESC')->where('active',0)->get();
         return view('admin/consortium/index',compact('consortium'));   
     }
 
     public function newConsortium(Request $request)
     {
 
-        $consortium = new Consorcio();
+        $consortium = new Consortium();
 
         $consortium->name = $request->nombre;
 
@@ -49,7 +49,7 @@ class AdminController extends Controller
         return redirect()->route('consortiums')->with('message', $message);
     }
 
-    public function editConsortium(Request $request, Consorcio $consortium)
+    public function editConsortium(Request $request, Consortium $consortium)
     {
         $consortium->name = $request->get('name');
         $updated = $consortium->update();
@@ -59,7 +59,7 @@ class AdminController extends Controller
 
     }
 
-    public function deleteConsortium(Consorcio $consortium)
+    public function deleteConsortium(Consortium $consortium)
     {
         $consortium->active = '1';
         $consortium->update;

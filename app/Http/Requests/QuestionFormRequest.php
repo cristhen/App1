@@ -24,6 +24,7 @@ class QuestionFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'elections_id' => 'required',
             'question' => 'required'
         ];
     }

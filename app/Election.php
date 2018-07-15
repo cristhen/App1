@@ -10,6 +10,18 @@ class Election extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'active',
+        'consortiums_id'
     ];
+
+    public function questions()
+    {
+      return $this->hasMany('App\Question');
+    }
+
+    public function consortiums()
+    {
+      return $this->belongsTo('App\Consortium');
+    }
 }

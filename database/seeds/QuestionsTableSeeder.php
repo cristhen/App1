@@ -11,16 +11,20 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
+            
         DB::table('questions')->insert([
-            'question' => 'Que le parece el sistema web?',
+            'elections_id' => 1,
+            'question' => 'Te gusta el sistema?',
         ]);
 
         DB::table('questions')->insert([
-            'question' => 'Le gusta el diseño?',
+            'elections_id' => 1,
+            'question' => 'Que tal te parece el diseño?',
         ]);
 
         DB::table('questions')->insert([
-            'question' => 'Recomendaria usarlo?',
+            'elections_id' => 1,
+            'question' => 'Recomendarias el sistema?',
         ]);
     }
 }

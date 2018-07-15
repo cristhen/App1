@@ -41,8 +41,10 @@ class QuestionController extends Controller
     public function store(QuestionFormRequest $request)
     {
         $question = new Question;
-
+        
+        $question->elections_id = $request->get('elections_id');
         $question->question = $request->get('question');
+        
         $register = $question->save();
 
         $message = $register ? 'Pregunta registrada correctamente' : 'La Pregunta NO pudo registrarse';
@@ -80,6 +82,7 @@ class QuestionController extends Controller
      */
     public function update(QuestionFormRequest $request, Question $question)
     {
+        $question->elections_id = $request->get('elections_id');
         $question->question = $request->get('question');
         $updated = $question->save();
 

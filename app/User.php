@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role', 'consorcio_id', 'avatar', 'uf_number'
+        'name', 'email', 'password','role', 'consortiums_id', 'avatar', 'uf_number'
     ];
 
     /**
@@ -48,9 +48,14 @@ class User extends Authenticatable
         return $this->active == 1;
     }
 
-    public function consortium()
+    public function consortiums()
     {
       return $this->belongsTo('App\Consortium');
+    }
+
+    public function questions_users()
+    {
+        return $this->hasMany('App\QuestionUser');
     }
 
 
