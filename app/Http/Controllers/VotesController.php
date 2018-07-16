@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use App\Vote;
+use Auth;
+
 
 class VotesController extends Controller
 {
@@ -13,7 +17,9 @@ class VotesController extends Controller
      */
     public function index()
     {
-        
+        $questions = Question::orderBy('id','DESC')->get();
+
+        return view('users/votes/vote',compact('questions','cont'));
     }
 
     public function pending()
@@ -39,7 +45,30 @@ class VotesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        try {
+            $users_id = Auth::user()->id;
+
+            $questions_id = $request->get('questions_id');
+            $votes = $request->get('votes');
+
+            for ($i = 0; $i<count($questions_id); $i++) {
+                $vote = new Vote;
+                $vote->elections_id = $request->get('elections_id');
+                $vote->questions_id = $questions_id[$i];
+                $vote->users_id = $users_id;
+                $vote->vote = $votes[$i];
+                $register = $vote->save();
+            }
+
+            $message = $register ? 'Votación Exitosa, Los resultados se publicaran a las 48 horas de haber iniciado las elecciones' : 'No se pudo registrar la votación';
+            return redirect()->route('home')->with('message', $message);
+            
+        } catch (\Exception $e) {
+            $message = 'No puedes hacer dos votaciones en una misma elección';
+            return redirect()->route('home')->with('error', $message);
+        }
+        
     }
 
     /**

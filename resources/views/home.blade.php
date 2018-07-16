@@ -18,7 +18,15 @@
         		@endif
             </div>
         </div>
+        
     </div>
+    @if(\Session::has('message'))
+        @include('layouts.message')
+    @endif
+
+    @if(\Session::has('error'))
+        @include('layouts.error')
+    @endif
 </div>
 
 @endsection

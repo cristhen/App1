@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'daniela@mail.com',
             'password' => bcrypt('123456'),
             'consortiums_id' => 1,
-            'avatar' => 'user.png',
+            'avatar' => 'user.jpeg',
             'uf_number' => '001-U1'
         ]);
         
@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'alejandra@mail.com',
             'password' => bcrypt('123456'),
             'consortiums_id' => 2,
-            'avatar' => 'user.png',
+            'avatar' => 'user.jpeg',
             'uf_number' => '001-U2'
         ]);
 
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'rafahenra@mail.com',
             'password' => bcrypt('123456'),
             'consortiums_id' => 1,
-            'avatar' => 'user.png',
+            'avatar' => 'user.jpeg',
             'uf_number' => '002-U1'
         ]);
 
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456'),
             'role' => 1,
             'consortiums_id' => 1,
-            'avatar' => 'admin.png',
+            'avatar' => 'admin.jpeg',
             'uf_number' => '001-A1'
         ]);
 
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456'),
             'role' => 1,
             'consortiums_id' => 2,
-            'avatar' => 'admin.png',
+            'avatar' => 'admin.jpeg',
             'uf_number' => '001-A2'
         ]);
     }

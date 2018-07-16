@@ -9,6 +9,11 @@ Route::get('/', function () {
 });
 
 
+
+
+
+
+
 //INYECCIONES
 /*Route::bind('admin/users', function($id){
   return App\User::where('id', $id)->first();
@@ -25,7 +30,7 @@ Route::resource('admin/questions','Admin\QuestionController');
 Route::resource('admin/elections','Admin\ElectionController');
 
 
-
+Route::resource('users/votes','VotesController');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

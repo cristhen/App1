@@ -8,6 +8,8 @@ class Vote extends Model
 {
     protected $table = 'votes';
 
+    public $timestamps = false;
+
     protected $fillable = [
     	'elections_id',
         'questions_id',

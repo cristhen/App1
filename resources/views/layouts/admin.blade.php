@@ -74,6 +74,7 @@
               <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
               <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
               <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
+              <a class="list-group-item" href="#">Resultados</a>
             </div>
           </div>
             
@@ -87,7 +88,8 @@
 
             <div class="panel-body">
               <a class="list-group-item" href="#navbar">Inicio</a>
-              <a class="list-group-item" href="#buttons">Votación</a>
+              <a class="list-group-item" href="{{ route('votes.index') }}">Votación</a>
+              <a class="list-group-item" href="#">Resultados</a>
             </div>
           </div>
             
@@ -109,6 +111,7 @@
 
     <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
     
+    <script src="{{asset('js/vote.js')}}"></script>
 
     <script>
       $(document).ready(function() {
