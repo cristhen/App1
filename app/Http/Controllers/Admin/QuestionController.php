@@ -11,33 +11,20 @@ use App\Http\Requests\QuestionFormRequest;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {   
         $questions = Question::orderBy('id','DESC')->get();
         return view('admin/questions/index',compact('questions')); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(QuestionFormRequest $request)
     {
         $question = new Question;
@@ -51,35 +38,13 @@ class QuestionController extends Controller
         return redirect()->route('questions.index')->with('message', $message);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Question $question)
     {
         return view('admin/questions/edit',compact('question'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(QuestionFormRequest $request, Question $question)
     {
         $question->elections_id = $request->get('elections_id');
@@ -90,12 +55,6 @@ class QuestionController extends Controller
         return redirect()->route('questions.index')->with('message', $message);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Question $question)
     {
         $question->active = 1;

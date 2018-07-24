@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Cristiam Henriquez',
             'email' => 'cristhen@mail.com',
             'password' => bcrypt('123456'),
-            'role' => 1,
+            'role' => 0,
             'consortiums_id' => 1,
             'avatar' => 'admin.jpeg',
             'uf_number' => '001-A1'

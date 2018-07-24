@@ -25,7 +25,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Elecciones Finalizadas</div>
                 <div class="panel-body">
-                    <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
+                    <a class="list-group-item" href="{{ route('elections.finished') }}">Votaciones</a>
                 </div>
             </div>
         </div>    

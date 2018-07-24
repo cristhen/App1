@@ -6,6 +6,25 @@
         <div class="row">
             <div class="col-sm-6 col-md-2">
                 <img src="{{asset('img/user/'.Auth::user()->avatar)}}" class="img-thumbnail pull-left" width="120px">
+                
+                @if(Auth::user()->is_master)
+                    <button type="button" class="btnrating btn btn-warning btn-sm" data-attr="1" id="rating-star-1">
+                        <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-warning btn-sm" data-attr="2" id="rating-star-2">
+                        <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-warning btn-sm" data-attr="3" id="rating-star-3">
+                        <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                    </button>
+                @elseif(Auth::user()->is_admin)
+                    <button type="button" class="btnrating btn btn-warning btn-sm" data-attr="1" id="rating-star-1">
+                        <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btnrating btn btn-warning btn-sm" data-attr="2" id="rating-star-2">
+                        <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                    </button>
+                @endif
             </div>
             <div class="col-sm-6 col-md-8">
                 <h4>Titular: {{ Auth::user()->name  }}</h4>
@@ -18,8 +37,15 @@
         		@endif
             </div>
         </div>
-        
     </div>
+    
+    @if(Auth::user()->is_user)
+    <div class="well well-sm">
+        <a class="btn btn-primary" href="{{ route('votes',$election ) }}">Votar</a>
+        <a class="btn btn-info" href="{{ route('votes',$election ) }}">Resultados</a>
+    </div>
+    @endif
+
     @if(\Session::has('message'))
         @include('layouts.message')
     @endif

@@ -7,7 +7,7 @@ use App\Question;
 use App\Vote;
 use App\QuestionVote;
 use Auth;
-
+use App\Election;
 
 class VotesController extends Controller
 {
@@ -16,11 +16,22 @@ class VotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Election $election)
     {
-        $questions = Question::orderBy('id','ASC')->get();
+        
+        $questions = Question::orderBy('id','ASC')->where('elections_id',$election->id)->get();
 
-        return view('users/votes/vote',compact('questions','cont'));
+        $id = Auth::user()->id;
+        
+        $check = Vote::where('elections_id',$election->id)->where('users_id',$id)->first();
+        
+        if ($check) {
+            $message = 'No puedes hacer dos votaciones en una misma elección';
+            return redirect()->route('home')->with('error', $message);
+        }else {
+            return view('users/votes/vote',compact('questions','cont'));
+        }
+            
     }
 
     public function pending()

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-sm-12 col-md-9">
-    <h3 class="page-header" style="margin-top: 0%">Elección Activas UF</h3>
+    <h3 class="page-header" style="margin-top: 0%">Elección Finalizadas UF</h3>
     @if(\Session::has('message'))
         @include('layouts.message')
     @endif
@@ -14,6 +14,7 @@
             <div class="panel panel-info">
                 <div class="panel-heading">Elecciones</div>
                 <div class="panel-body">
+
                     <table id="consortium" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -35,10 +36,15 @@
                             </tr>
                         </tfoot>
                     </table>
+
                 </div>
             </div>
         </div>    
     </div>
+
+    
+    
+         
 </div>
 
 

@@ -14,6 +14,12 @@ use App\QuestionVote;
 
 class ElectionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $consortiums = Consortium::orderBy('id','DESC')->pluck('name','id')->all();
@@ -27,15 +33,12 @@ class ElectionController extends Controller
 
     }
 
-    public function pending(Election $election)
+    public function finished()
     {
-        return view('admin/elections/index',compact('election'));    
+        $elections = Election::orderBy('id','DESC')->where('active',1)->get();
+        return view('admin/elections/finished',compact('elections'));    
     }
 
-    public function create()
-    {
-        //
-    }
 
     public function store(Request $request)
     {
@@ -67,21 +70,31 @@ class ElectionController extends Controller
     public function show($id)
     {
         
-        $questions = Question::where('elections_id',$id)->pluck('id')->all();
+        //$questions = Question::where('elections_id',$id)->pluck('id')->all();
+
+        $questions = Question::where('elections_id',$id)->get();
+
+        
     
         foreach ($questions as $question) {
-            $votes[] = QuestionVote::where('questions_id',$question)->get();
+            
+            $election = Election::where('id',$question->elections_id)->first();
+            
+            $votes[] = QuestionVote::where('questions_id',$question->id)->get();
         }
         
+        /*
         foreach ($votes as $vote) {
             $total[] = $vote[0]->approved + $vote[0]->abstain + $vote[0]->against;
             $approved[] = $vote[0]->approved;
             $abstain[] = $vote[0]->abstain;
             $against[] = $vote[0]->against;
 
-        }
+        }*/
 
-        return view('admin/elections/show',compact('votes')); 
+
+
+        return view('admin/elections/show',compact('votes','election')); 
 
     }
 
@@ -104,6 +117,17 @@ class ElectionController extends Controller
 
         $message = $updated ? 'Votación actualizada correctamente' : 'La Votación NO pudo actualizarse';
         return redirect()->route('elections.edit',$id)->with('message', $message);
+    }
+
+
+    public function finish(Election $election)
+    {
+        $election->active = 1;
+        $updated = $election->save();
+
+        $message = $updated ? 'Votación finalizada!' : 'La Votación NO pudo finalizarse';
+        return redirect()->route('elections.index')->with('message', $message);
+
     }
 
     public function destroy($id)

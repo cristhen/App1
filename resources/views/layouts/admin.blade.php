@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +18,7 @@
   </head>
 
   <body>
-    @if(Auth::user()->is_admin)
+    @if(Auth::user()->is_admin || Auth::user()->is_master)
       <nav class="navbar navbar-default navbar-fixed-top">
     @elseif(Auth::user()->is_user)
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -61,48 +60,52 @@
 
     <div class="container-fluid">
       <div class="row">
-        @if(Auth::user()->is_admin)
-        <div class="col-lg-3 col-md-3 col-sm-4">
-
-          <div class="panel panel-primary">
-            <div class="panel-heading">Menu</div>
-
-            <div class="panel-body">
-              
-              <a class="list-group-item" href="#navbar">Inicio</a>
-              <a class="list-group-item" href="{{ route('consortiums')}}">Consorcios</a>
-              <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
-              <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
-              <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
-              <a class="list-group-item" href="#">Resultados</a>
+        @if(Auth::user()->is_master)
+          <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Menu</div>
+                <div class="panel-body">
+                  
+                  <a class="list-group-item" href="#navbar">Inicio</a>
+                  <a class="list-group-item" href="{{ route('consortiums.index')}}">Consorcios</a>
+                  <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
+                  <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
+                  <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
+                </div>
             </div>
           </div>
-            
-        </div>
-          
-      @elseif(Auth::user()->is_user)
-        <div class="col-lg-3 col-md-3 col-sm-4">
-          
-          <div class="panel panel-success">
-            <div class="panel-heading">Menu</div>
-
-            <div class="panel-body">
-              <a class="list-group-item" href="#navbar">Inicio</a>
-              <a class="list-group-item" href="{{ route('votes.index') }}">Votación</a>
-              <a class="list-group-item" href="#">Resultados</a>
+        @elseif(Auth::user()->is_admin)
+          <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Menu</div>
+                <div class="panel-body">
+                  <a class="list-group-item" href="#navbar">Inicio</a>
+                  <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
+                  <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
+                  <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
+                </div>
             </div>
           </div>
-            
-        </div>
-      @endif          
+        @elseif(Auth::user()->is_user)
+          <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">Menu</div>
+              <div class="panel-body">
+                <a class="list-group-item" href="#navbar">Inicio</a>
+              </div>
+            </div>
+          </div>
+        @endif          
         
         @yield('content')
         
         
       </div>
     </div>
-
+    @stack('scripts')
     <script src="{{asset('js/jquery-3.3.1.js')}}"></script>
+    <script src="{{asset('js/jquery.canvasjs.min.js')}}"></script>
+
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/holder.min.js')}}"></script>
 
@@ -151,5 +154,8 @@
           );
       }
     </script>
+
+    
+
   </body>
 </html>

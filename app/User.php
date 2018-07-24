@@ -28,6 +28,11 @@ class User extends Authenticatable
     ];
 
 
+    public function getIsMasterAttribute()
+    {
+        return $this->role == 0;
+    }
+
     public function getIsAdminAttribute()
     {
         return $this->role == 1;
@@ -35,7 +40,7 @@ class User extends Authenticatable
 
     public function getIsUserAttribute()
     {
-        return $this->role == 0;
+        return $this->role == 2;
     }
 
     public function getIsActiveAttribute()

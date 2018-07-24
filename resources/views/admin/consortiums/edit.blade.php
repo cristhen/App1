@@ -7,13 +7,14 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Editar consorcio: {{$consortium->name}}</div>
                 <div class="panel-body">
-                    <form role="form" method="post" action="{{route('editConsortium',$consortium)}}">
-                        @csrf
+                    <form role="form" method="post" action="{{route('consortiums.update',$consortium)}}">
+                        @method('patch')
+                        {!! Form::token() !!}
                         <div class="form-group">
                             <input id="name" name="name" type="text" class="form-control" required value="{{$consortium->name}}">
                         </div>
                         <div class="panel-footer">
-                            <a class="btn btn-default btn-sm pull-left" href="{{ route('consortiums') }}">atras</a>
+                            <a class="btn btn-default btn-sm pull-left" href="{{ route('consortiums.index') }}">Atras</a>
                             
                             <button type="submit" class="btn btn-primary btn-sm pull-right">
                               <span class="glyphicon glyphicon-ok"></span> Guardar 

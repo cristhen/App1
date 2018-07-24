@@ -30,14 +30,26 @@
   <div class="col-lg-6 col-md-6 col-sm-12">
     <div class="form-group">
       {!! Form::label('Role', 'Role') !!}
-      {!! Form::select('role', ['0' => 'Usuario', '1' => 'Administrador'],null,['class' => 'form-control']) !!}
+      @if(Auth::user()->is_master)
+        {!! Form::select('role', ['2' => 'Usuario', '1' => 'Administrador', '0' => 'Master'],null,['class' => 'form-control']) !!}
+      @elseif(Auth::user()->is_admin)
+        <select name="role" class="form-control" disabled>
+          <option value="2">Usuario</option>
+        </select>
+      @endif
     </div>
   </div>
 
   <div class="col-lg-6 col-md-6 col-sm-12">
     <div class="form-group">
       {!! Form::label('Consorcio', 'Consorcio') !!}
-      {!! Form::select('consorcio_id', $consortiums, null, ['class' => 'form-control'])!!}
+      @if(Auth::user()->is_master)
+        {!! Form::select('consorcio_id', $consortiums, null, ['class' => 'form-control'])!!}
+      @elseif(Auth::user()->is_admin)
+        <select name="consorcio_id" class="form-control" disabled>
+          <option value="{{ Auth::user()->consortiums_id }}">{{ Auth::user()->consortiums->name }}</option>
+        </select>
+      @endif
     </div>
   </div>
 

@@ -6,7 +6,7 @@
                 <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Eliminar Consorcio</h4>
             </div>
             <br>
-            <form action="{{ route('deleteConsortium', $con) }}" method="post">
+            <form action="{{ route('consortiums.destroy', $con) }}" method="post">
                 <input type="hidden" name="_method" value="DELETE">
             	@csrf
             	<div class="modal-body" style="padding: 5px;">

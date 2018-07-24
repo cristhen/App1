@@ -7,7 +7,7 @@
         @include('layouts.message')
     @endif
     
-    <a class="btn btn-primary block" href="{{ route('elections.show',$questionVote->questions_id) }}">Atras</a><br><br>
+    <a class="btn btn-primary block" href="{{ route('elections.show',$questionVote->questions->elections_id) }}">Atras</a><br><br>
     
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">

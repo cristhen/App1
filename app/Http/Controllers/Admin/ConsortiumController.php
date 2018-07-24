@@ -14,52 +14,53 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Support\Facades\Input;
 
 
-class AdminController extends Controller
+class ConsortiumController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('admin/index');
-    }
-
-
-
-
-    //METHOD CONSORTIUM
-    public function consortiums()
-    {
         $consortium = Consortium::orderBy('id','DESC')->where('active',0)->get();
-        return view('admin/consortium/index',compact('consortium'));   
+        return view('admin/consortiums/index',compact('consortium')); 
     }
-
-    public function newConsortium(Request $request)
+    
+    public function store(Request $request)
     {
 
         $consortium = new Consortium();
-
         $consortium->name = $request->nombre;
-
         $register = $consortium->save();
 
         $message = $register ? 'Consorcio registrado correctamente' : 'El Consorcio NO pudo registrarse';
-        return redirect()->route('consortiums')->with('message', $message);
+        return redirect()->route('consortiums.index')->with('message', $message);
     }
 
-    public function editConsortium(Request $request, Consortium $consortium)
+    public function edit($id)
+    {
+        $consortium = Consortium::where('id',$id)->first();
+        return view('admin/consortiums/edit',compact('consortium')); 
+    }
+
+    public function update(Request $request, Consortium $consortium)
     {
         $consortium->name = $request->get('name');
         $updated = $consortium->update();
         
         $message = $updated ? 'Consorcio actualizado correctamente' : 'El Consorcio NO pudo actualizarse';
-        return redirect()->route('consortiums')->with('message', $message);
+        return redirect()->route('consortiums.index')->with('message', $message);
 
     }
 
-    public function deleteConsortium(Consortium $consortium)
+    public function destroy(Consortium $consortium)
     {
         $consortium->active = '1';
         $consortium->update;
@@ -67,18 +68,7 @@ class AdminController extends Controller
         $deleted = $consortium->update();
 
         $message = $deleted ? 'Consorcio eliminado correctamente!' :  'El Consorcio No pudo eliminarse!';
-        return redirect()->route('consortiums')->with('message', $message);        
-    }
-
-
-    public function questions()
-    {
-        return view('admin/questions/index');   
-    }
-
-    public function voting()
-    {
-        return view('admin/voting/index');   
+        return redirect()->route('consortiums.index')->with('message', $message);        
     }
 
     

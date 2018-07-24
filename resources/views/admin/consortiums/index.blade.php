@@ -18,16 +18,16 @@
             </tr>
         </thead>
         <tbody>
-        	@foreach($consortium as $con)
+            @foreach($consortium as $con)
             <tr>
                 <td>{{$con->id}}</td>
                 <td>{{$con->name}}</td>
                 <th>
-                	<a href="{{ route('viewConsortium',$con->id) }}" class="btn btn-info btn-sm">Editar</a>
-                	<button data-toggle="modal" data-target="#delete-{{$con->id}}" class="btn btn-danger btn-sm">Eliminar</button>
+                    <a href="{{ route('consortiums.edit',$con->id) }}" class="btn btn-info btn-sm">Editar</a>
+                    <button data-toggle="modal" data-target="#delete-{{$con->id}}" class="btn btn-danger btn-sm">Eliminar</button>
             	</th>
             </tr>
-            @include('admin.consortium.delete')
+            @include('admin.consortiums.delete')
             @endforeach
         </tbody>
         <tfoot>
@@ -48,7 +48,7 @@
                 <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Nuevo Consorcio</h4>
             </div>
             <br>
-            <form action="{{ route('newConsortium') }}" method="post">
+            <form action="{{ route('consortiums.store') }}" method="post">
             	@csrf
             	<div class="modal-body" style="padding: 5px;">
                   	<div class="row">
@@ -66,11 +66,9 @@
                       <span class="glyphicon glyphicon-remove"></span> Cancelar 
                     </button><br><br>
                 </div>
-          	</form>
+            </form>
         </div>
     </div>
 </div>
-
-
 
 @endsection
