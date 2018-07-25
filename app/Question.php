@@ -13,14 +13,19 @@ class Question extends Model
 
     protected $fillable = [
     	'elections_id',
+        'consortiums_id',
         'question',
-        'votes'
     ];
 
     
     public function elections()
     {
       return $this->belongsTo('App\Election');
+    }
+    
+    public function consortiums()
+    {
+      return $this->belongsTo('App\Consortium');
     }
 
     public function votes()

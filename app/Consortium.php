@@ -22,4 +22,9 @@ class Consortium extends Model
     {
       return $this->hasMany('App\Election');
     }
+    
+    public function questions()
+    {
+      return $this->hasMany('App\Question');
+    }
 }

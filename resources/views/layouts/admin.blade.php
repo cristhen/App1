@@ -66,7 +66,7 @@
               <div class="panel-heading">Menu</div>
                 <div class="panel-body">
                   
-                  <a class="list-group-item" href="#navbar">Inicio</a>
+                  <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
                   <a class="list-group-item" href="{{ route('consortiums.index')}}">Consorcios</a>
                   <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
                   <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
@@ -79,7 +79,7 @@
             <div class="panel panel-primary">
               <div class="panel-heading">Menu</div>
                 <div class="panel-body">
-                  <a class="list-group-item" href="#navbar">Inicio</a>
+                  <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
                   <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
                   <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
                   <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
@@ -91,7 +91,7 @@
             <div class="panel panel-success">
               <div class="panel-heading">Menu</div>
               <div class="panel-body">
-                <a class="list-group-item" href="#navbar">Inicio</a>
+                <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
               </div>
             </div>
           </div>

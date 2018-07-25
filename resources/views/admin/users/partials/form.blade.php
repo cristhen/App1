@@ -33,7 +33,7 @@
       @if(Auth::user()->is_master)
         {!! Form::select('role', ['2' => 'Usuario', '1' => 'Administrador', '0' => 'Master'],null,['class' => 'form-control']) !!}
       @elseif(Auth::user()->is_admin)
-        <select name="role" class="form-control" disabled>
+        <select name="role" class="form-control">
           <option value="2">Usuario</option>
         </select>
       @endif
@@ -46,7 +46,7 @@
       @if(Auth::user()->is_master)
         {!! Form::select('consorcio_id', $consortiums, null, ['class' => 'form-control'])!!}
       @elseif(Auth::user()->is_admin)
-        <select name="consorcio_id" class="form-control" disabled>
+        <select name="consortiums_id" class="form-control">
           <option value="{{ Auth::user()->consortiums_id }}">{{ Auth::user()->consortiums->name }}</option>
         </select>
       @endif

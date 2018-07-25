@@ -11,6 +11,7 @@ use App\Consortium;
 use App\Vote;
 use DB;
 use App\QuestionVote;
+use Auth;
 
 class ElectionController extends Controller
 {
@@ -28,14 +29,24 @@ class ElectionController extends Controller
 
     public function active()
     {
-        $elections = Election::orderBy('id','DESC')->where('active',0)->get();
+        if(Auth::user()->is_master){
+            $elections = Election::orderBy('id','DESC')->where('active',0)->get();
+            return view('admin/elections/active',compact('elections')); 
+        }
+        
+        $elections = Election::orderBy('id','DESC')->where('active',0)->where('consortiums_id',Auth::user()->consortiums_id)->get();
         return view('admin/elections/active',compact('elections')); 
 
     }
 
     public function finished()
     {
-        $elections = Election::orderBy('id','DESC')->where('active',1)->get();
+        if(Auth::user()->is_master){
+            $elections = Election::orderBy('id','DESC')->where('active',1)->get();
+            return view('admin/elections/active',compact('elections')); 
+        }
+        
+        $elections = Election::orderBy('id','DESC')->where('active',1)->where('consortiums_id',Auth::user()->consortiums_id)->get();
         return view('admin/elections/finished',compact('elections'));    
     }
 
@@ -54,15 +65,22 @@ class ElectionController extends Controller
 
         $questions = $request->get('question');
 
-        //dump($questions);die();
-
         for ($i = 0; $i<count($questions); $i++) {
             $insert_question = new Question;
             $insert_question->elections_id = $election->id;
+            $insert_question->consortiums_id = $request->get('consortiums_id');
             $insert_question->question = $questions[$i];
             $insert_question->save();
+            
+            $insert_questionVote = new QuestionVote;
+            $insert_questionVote->questions_id = $insert_question->id;
+            $insert_questionVote->approved = 0;
+            $insert_questionVote->abstain = 0;
+            $insert_questionVote->against = 0;
+            $insert_questionVote->save();
+            
         }
-
+        
         $message = $register ? 'Elección registrada correctamente' : 'La Elección NO pudo registrarse';
         return redirect()->route('elections.index')->with('message', $message);
     }
@@ -111,6 +129,7 @@ class ElectionController extends Controller
         $questionVote = QuestionVote::find($id);
         
         $questionVote->approved = $request->get('approved');
+        
         $questionVote->abstain = $request->get('abstain');
         $questionVote->against = $request->get('against');
         $updated = $questionVote->save();

@@ -20,6 +20,11 @@ class CreateQuestionsTable extends Migration
                   ->references('id')
                   ->on('elections')
                   ->onDelete('restrict');
+            $table->integer('consortiums_id')->unsigned();
+            $table->foreign('consortiums_id')
+                  ->references('id')
+                  ->on('consortiums')
+                  ->onDelete('restrict');
             $table->string('question');
         });
     }

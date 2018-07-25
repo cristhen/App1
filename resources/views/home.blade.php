@@ -31,10 +31,12 @@
                 <h4><cite title="carcas" ">Consorcio: {{ Auth::user()->consortiums->name  }}<i class="glyphicon glyphicon-map-marker"></i> </cite></h4>
                 <h4>UF: {{ Auth::user()->uf_number  }}</h4>
                 @if(Auth::user()->is_active)
-                	Estado de cuenta: <span class="label label-success">Activo</span>
+                    Estado de cuenta: <span class="label label-success">Activo</span>
             	@elseif(Auth::user()->is_Inactive)
-            		Estado de cuenta: <span class="label label-danger">Activo</span>
-        		@endif
+                    Estado de cuenta: <span class="label label-danger">Activo</span>
+                @endif
+                <br>
+                <a href="{{ route('users.edit',Auth::user()->id ) }}" class="btn btn-info btn-sm">Editar perfil</a>
             </div>
         </div>
     </div>
@@ -43,6 +45,12 @@
     <div class="well well-sm">
         <a class="btn btn-primary" href="{{ route('votes',$election ) }}">Votar</a>
         <a class="btn btn-info" href="{{ route('votes',$election ) }}">Resultados</a>
+    </div>
+    @endif
+    
+    @if(Auth::user()->change == 0)
+    <div class="well well-sm">
+        Recuerde cambiar su contraseña
     </div>
     @endif
 

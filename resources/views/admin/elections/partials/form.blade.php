@@ -3,7 +3,13 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group">
       {!! Form::label('Consorcio', 'Consorcio') !!}
-      {!! Form::select('consortiums_id', $consortiums, null, ['class' => 'form-control'])!!}
+        @if(Auth::user()->is_master)
+            {!! Form::select('consortiums_id', $consortiums, null, ['class' => 'form-control'])!!}
+        @elseif( Auth::user()->is_admin)
+        <select name="consortiums_id" class="form-control">
+            <option value="{{ Auth::user()->consortiums_id  }}">{{ Auth::user()->consortiums->name  }}</option>
+        </select>
+        @endif
     </div>
   </div>
 
@@ -49,6 +55,6 @@
       <span class="glyphicon glyphicon-remove"></span> Cancelar 
     </button>
 
-    <a class="btn btn-default btn-sm pull-left" href="{{ route('elections.index') }}">atras</a><br><br>
+    <a class="btn btn-default btn-sm pull-left" href="{{ route('elections.index') }}">Atras</a><br><br>
 </div>
 

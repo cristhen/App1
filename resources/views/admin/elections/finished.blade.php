@@ -18,7 +18,8 @@
                     <table id="consortium" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th >Elección</th>
+                                <th>Elección</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>

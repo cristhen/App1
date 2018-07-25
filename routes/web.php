@@ -10,8 +10,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['MDm
     Route::resource('consortiums','ConsortiumController');
 });
 
+Route::resource('users','Admin\UserController');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['MDadmin']], function(){
-    Route::resource('users','UserController');
+    //Route::resource('users','UserController');
     Route::resource('questions','QuestionController');
 
     Route::get('elections/active','ElectionController@active')->name('elections.active');

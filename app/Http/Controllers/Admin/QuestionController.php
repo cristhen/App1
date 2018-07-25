@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Question;
 use App\Http\Requests;
 use App\Http\Requests\QuestionFormRequest;
+use Auth;
 
 class QuestionController extends Controller
 {
@@ -20,11 +21,18 @@ class QuestionController extends Controller
 
     public function index()
     {   
-        $questions = Question::orderBy('id','DESC')->get();
-        return view('admin/questions/index',compact('questions')); 
+        if (Auth::user()->is_master){
+            $questions = Question::orderBy('id','DESC')->get();
+            return view('admin/questions/index',compact('questions')); 
+        } elseif(Auth::user()->is_admin) {
+            $questions = Question::orderBy('id','DESC')->where('consortiums_id',Auth::user()->consortiums_id)->get();
+            return view('admin/questions/index',compact('questions')); 
+        }
+            
+        
     }
 
-
+    /*
     public function store(QuestionFormRequest $request)
     {
         $question = new Question;
@@ -37,7 +45,7 @@ class QuestionController extends Controller
         $message = $register ? 'Pregunta registrada correctamente' : 'La Pregunta NO pudo registrarse';
         return redirect()->route('questions.index')->with('message', $message);
     }
-
+    */
 
     public function edit(Question $question)
     {

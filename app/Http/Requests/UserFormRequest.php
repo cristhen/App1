@@ -27,9 +27,8 @@ class UserFormRequest extends FormRequest
           'name'         =>  'required|max:100',
           'email'        =>  'required|email|unique:users',
           'password'     =>  'required|confirmed',
-          'role'         =>  'required|in:0,1',
-          'consorcio_id' => 'required',
-          'avatar'       =>  'mimes:jpeg,png',
+          'role'         =>  'required|in:0,1,2',
+          'consortiums_id' => 'required',
           'uf_number'    => 'required'
         ];
     }

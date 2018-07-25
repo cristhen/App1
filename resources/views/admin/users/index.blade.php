@@ -35,13 +35,15 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>
-                    @if($user->is_admin)
+                    @if($user->is_master)
+                        <p>Master</p>
+                    @elseif($user->is_admin)
                         <p>Administrador</p>
                     @elseif($user->is_user)
                         <p>Usuario</p>
                     @endif
                 </td>
-                <td>{{$user->consorcio_id}}</td>
+                <td>{{$user->consortiums->name}}</td>
                 <td>{{$user->uf_number}}</td>
                 <td>
                     @if($user->is_active)
@@ -51,8 +53,8 @@
                     @endif
                 </td>
                 <th>
-                	<a href="{{ route('users.edit',$user->id) }}" class="btn btn-info btn-sm">Editar</a>
-                	<button data-toggle="modal" data-target="#delete-{{$user->id}}" class="btn btn-danger btn-sm">Eliminar</button>
+                    <a href="{{ route('users.edit',$user->id) }}" class="btn btn-info btn-sm">Editar</a>
+                    <button data-toggle="modal" data-target="#delete-{{$user->id}}" class="btn btn-danger btn-sm">Eliminar</button>
             	</th>
             </tr>
             @include('admin.users.delete')

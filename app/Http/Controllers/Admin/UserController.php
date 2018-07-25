@@ -11,7 +11,7 @@ use App\Consortium;
 use App\Http\Requests;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Support\Facades\Input;
-
+use Auth;
 
 class UserController extends Controller
 {
@@ -24,10 +24,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('id','DESC')->get();
-        $consortiums = Consortium::orderBy('id','DESC')->pluck('name','id')->all();
+        if(Auth::user()->is_master){
+            
+            $users = User::orderBy('id','DESC')->get();
+            $consortiums = Consortium::orderBy('id','DESC')->pluck('name','id')->all();
         
-        return view('admin/users/index',compact('users','consortiums')); 
+            return view('admin/users/index',compact('users','consortiums')); 
+        }
+        
+        $users = User::orderBy('id','DESC')->where('consortiums_id',Auth::user()->consortiums_id)->get();
+        return view('admin/users/index',compact('users')); 
+        
     }
 
     public function store(UserFormRequest $request)
@@ -78,7 +85,11 @@ class UserController extends Controller
         $user->uf_number = $request->get('uf_number');
 
         $updated = $user->save();
-
+        if(Auth::user()->is_user){
+            $message = $updated ? 'Perfil actualizado correctamente' : 'El Perfil NO pudo actualizarse';
+            return redirect()->route('home')->with('message', $message);
+        }
+            
         $message = $updated ? 'Usuario actualizado correctamente' : 'El Usuario NO pudo actualizarse';
         return redirect()->route('users.index')->with('message', $message);
     }
