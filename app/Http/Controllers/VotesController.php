@@ -34,27 +34,6 @@ class VotesController extends Controller
             
     }
 
-    public function pending()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         
@@ -100,48 +79,24 @@ class VotesController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function finished()
+    {
+        $elections = Election::orderBy('id','DESC')->where('active',1)->where('consortiums_id',Auth::user()->consortiums_id)->get();
+        return view('users/elections/finished',compact('elections'));    
+    }
+
     public function show($id)
     {
-        //
+        
+        $questions = Question::where('elections_id',$id)->get();
+
+        foreach ($questions as $question) {
+            $election = Election::where('id',$question->elections_id)->first();
+            $votes[] = QuestionVote::where('questions_id',$question->id)->first();
+        }
+
+        return view('users/elections/show',compact('votes','election')); 
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

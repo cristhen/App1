@@ -18,6 +18,14 @@ class HomeController extends Controller
     {
 
         $election = Election::where('active', 0)->where('consortiums_id',Auth::user()->consortiums_id)->first();
-        return view('home',compact('election'));
+        
+
+        $finish = Election::where('active', 1)->where('consortiums_id',Auth::user()->consortiums_id)->count();
+        
+
+        //dump($finish);die();
+
+        return view('home',compact('election','finish'));
     }
+
 }

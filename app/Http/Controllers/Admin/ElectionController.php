@@ -88,29 +88,12 @@ class ElectionController extends Controller
     public function show($id)
     {
         
-        //$questions = Question::where('elections_id',$id)->pluck('id')->all();
-
         $questions = Question::where('elections_id',$id)->get();
 
-        
-    
         foreach ($questions as $question) {
-            
             $election = Election::where('id',$question->elections_id)->first();
-            
-            $votes[] = QuestionVote::where('questions_id',$question->id)->get();
+            $votes[] = QuestionVote::where('questions_id',$question->id)->first();
         }
-        
-        /*
-        foreach ($votes as $vote) {
-            $total[] = $vote[0]->approved + $vote[0]->abstain + $vote[0]->against;
-            $approved[] = $vote[0]->approved;
-            $abstain[] = $vote[0]->abstain;
-            $against[] = $vote[0]->against;
-
-        }*/
-
-
 
         return view('admin/elections/show',compact('votes','election')); 
 
@@ -153,4 +136,9 @@ class ElectionController extends Controller
     {
         //
     }
+
+
+    
+
+
 }

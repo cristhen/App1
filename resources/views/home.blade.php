@@ -42,9 +42,15 @@
     </div>
     
     @if(Auth::user()->is_user)
-    <div class="well well-sm">
-        <a class="btn btn-primary" href="{{ route('votes',$election ) }}">Votar</a>
-        <a class="btn btn-info" href="{{ route('votes',$election ) }}">Resultados</a>
+    <div class="well well-sm">        
+        @if($election)
+            <a class="btn btn-primary" href="{{ route('votes',$election ) }}">Votar</a>
+            
+        @endif
+        @if($finish)
+            <a class="btn btn-info" href="{{ route('votes.finished')}}">Resultados</a>
+        @endif    
+        
     </div>
     @endif
     

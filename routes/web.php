@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['MDa
 });
 
 
-Route::get('users/{election}/votes','VotesController@index')->name('votes');
+Route::get('votes/{election}/votes','VotesController@index')->name('votes');
+Route::get('votes/elections','VotesController@finished')->name('votes.finished');
 Route::resource('users/votes','VotesController');
 Route::get('/home', 'HomeController@index')->name('home');
