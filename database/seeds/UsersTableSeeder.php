@@ -11,51 +11,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Daniela Guzman',
-            'email' => 'daniela@mail.com',
-            'password' => bcrypt('123456'),
-            'consortiums_id' => 1,
-            'avatar' => 'user.jpeg',
-            'uf_number' => '001-U1'
-        ]);
-        
-        DB::table('users')->insert([
-            'name' => 'Alejandra Gonzales',
-            'email' => 'alejandra@mail.com',
-            'password' => bcrypt('123456'),
-            'consortiums_id' => 2,
-            'avatar' => 'user.jpeg',
-            'uf_number' => '001-U2'
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'Rafael Ramirez',
-            'email' => 'rafahenra@mail.com',
-            'password' => bcrypt('123456'),
-            'consortiums_id' => 1,
-            'avatar' => 'user.jpeg',
-            'uf_number' => '002-U1'
-        ]);
 
      	DB::table('users')->insert([
-            'name' => 'Cristiam Henriquez',
-            'email' => 'cristhen@mail.com',
+            'name' => 'Administrador Master',
+            'email' => 'admin@master.com',
             'password' => bcrypt('123456'),
             'role' => 0,
-            'consortiums_id' => 1,
+            //'consortiums_id' => ,
             'avatar' => 'admin.jpeg',
-            'uf_number' => '001-A1'
+            'uf_number' => 'ALL'
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'Orlando Henriquez',
-            'email' => 'orlando@mail.com',
-            'password' => bcrypt('123456'),
-            'role' => 1,
-            'consortiums_id' => 2,
-            'avatar' => 'admin.jpeg',
-            'uf_number' => '001-A2'
-        ]);
     }
 }

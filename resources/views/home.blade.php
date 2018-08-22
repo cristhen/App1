@@ -29,7 +29,7 @@
             <div class="col-sm-6 col-md-8">
                 <h4>Titular: {{ Auth::user()->name  }}</h4>
                 <h4><cite title="carcas" ">Consorcio: {{ Auth::user()->consortiums->name  }}<i class="glyphicon glyphicon-map-marker"></i> </cite></h4>
-                <h4>UF: {{ Auth::user()->uf_number  }}</h4>
+                <h4>Unidad Familiar: {{ Auth::user()->uf_number  }}</h4>
                 @if(Auth::user()->is_active)
                     Estado de cuenta: <span class="label label-success">Activo</span>
             	@elseif(Auth::user()->is_Inactive)

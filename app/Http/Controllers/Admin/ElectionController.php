@@ -47,6 +47,8 @@ class ElectionController extends Controller
         }
         
         $elections = Election::orderBy('id','DESC')->where('active',1)->where('consortiums_id',Auth::user()->consortiums_id)->get();
+
+        
         return view('admin/elections/finished',compact('elections'));    
     }
 

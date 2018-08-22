@@ -44,7 +44,7 @@
     <div class="form-group">
       {!! Form::label('Consorcio', 'Consorcio') !!}
       @if(Auth::user()->is_master)
-        {!! Form::select('consorcio_id', $consortiums, null, ['class' => 'form-control'])!!}
+        {!! Form::select('consortiums_id', $consortiums, null, ['class' => 'form-control'])!!}
       @elseif(Auth::user()->is_admin)
         <select name="consortiums_id" class="form-control">
           <option value="{{ Auth::user()->consortiums_id }}">{{ Auth::user()->consortiums->name }}</option>

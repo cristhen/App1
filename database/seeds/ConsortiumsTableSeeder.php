@@ -12,19 +12,7 @@ class ConsortiumsTableSeeder extends Seeder
     public function run()
     {
         DB::table('consortiums')->insert([
-            'name' => 'Consorcio 1',
-        ]);
-        DB::table('consortiums')->insert([
-            'name' => 'Consorcio 2',
-        ]);
-        DB::table('consortiums')->insert([
-            'name' => 'Consorcio 3',
-        ]);
-        DB::table('consortiums')->insert([
-            'name' => 'Consorcio 4',
-        ]);
-        DB::table('consortiums')->insert([
-            'name' => 'Consorcio 5',
+                'name' => 'ALL',
         ]);
     }
 }

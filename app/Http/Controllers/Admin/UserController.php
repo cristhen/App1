@@ -43,7 +43,7 @@ class UserController extends Controller
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->password = bcrypt($request->get('pasword'));
+        $user->password = bcrypt($request->get('password'));
         $user->role = $request->get('role');
         $user->consortiums_id = $request->get('consortiums_id');
         if (Input::hasFile('avatar')) {

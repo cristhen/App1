@@ -24,11 +24,14 @@
                         </thead>
                         <tbody>
                              @foreach($elections as $election)
-                             <tr>
-                                 <td>
-                                     <a class="list-group-item" style="text-decoration:none;" href="{{ route('elections.show',$election->id ) }}">{{ $election->name }}</a>
-                                 </td>
-                             </tr>
+                            <tr>
+                                <td>
+                                    <a class="list-group-item" style="text-decoration:none;" href="{{ route('elections.show',$election->id ) }}">{{ $election->name }}</a>
+                                </td>
+                                <td>
+                                    {{ $election->updated_at }}
+                                </td>
+                            </tr>
                             @endforeach  
                         </tbody>
                         <tfoot>

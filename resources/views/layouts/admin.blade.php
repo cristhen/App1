@@ -8,7 +8,7 @@
     <meta name="author" content="Cristiam Henriquez">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>UF</title>
+    <title>Unidad Familiar</title>
 
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-select.min.css')}}" rel="stylesheet">
@@ -25,13 +25,11 @@
     @endif  
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">UF</a>
+          <img class="pull-left" width="60px" src="{{ asset('img/apartment.png') }}" alt="Apartamento">  
+          <a class="navbar-brand" href="{{ route('home') }}">
+            Unidad Familiar
+          </a>  
+          
         </div>
 
           <ul class="nav navbar-nav navbar-right">
