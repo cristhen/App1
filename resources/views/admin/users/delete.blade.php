@@ -27,8 +27,8 @@
                     	<span class="glyphicon glyphicon-remove"></span> Eliminar
                     </button>
                         
-                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">		Close
-                    </button>
+                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close
+                    </button><br><br>
                 </div>
           	</form>
         </div>

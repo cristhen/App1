@@ -13,7 +13,7 @@
         @include('layouts.errors')
     @endif
 	
-	<table id="consortium" class="table table-striped table-bordered" style="width:100%">
+	<table id="users" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>
                 <th >Avatar</th>
@@ -53,8 +53,12 @@
                     @endif
                 </td>
                 <th>
-                    <a href="{{ route('users.edit',$user->id) }}" class="btn btn-info btn-sm">Editar</a>
-                    <button data-toggle="modal" data-target="#delete-{{$user->id}}" class="btn btn-danger btn-sm">Eliminar</button>
+                    <a href="{{ route('users.edit',$user->id) }}" type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    <button data-toggle="modal" data-target="#delete-{{$user->id}}" class="btn btn-danger btn-sm" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
             	</th>
             </tr>
             @include('admin.users.delete')

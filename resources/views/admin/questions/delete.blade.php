@@ -22,7 +22,7 @@
                     </button>
                         
                     <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">		Close
-                    </button>
+                    </button><br><br>
                 </div>
           	</form>
         </div>

@@ -72,9 +72,16 @@
     <button type="submit" class="btn btn-primary btn-sm pull-right">
       <span class="glyphicon glyphicon-ok"></span> Guardar 
     </button>
+
+    <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">
+      <span class="glyphicon glyphicon-remove"></span> Cerrar 
+    </button>
         
-    <button type="reset" class="btn btn-danger btn-sm pull-left">
+    <button type="reset" class="btn btn-danger btn-sm pull-right">
       <span class="glyphicon glyphicon-remove"></span> Cancelar 
     </button><br><br>
+    
+   
+    
 </div>
 

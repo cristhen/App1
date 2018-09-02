@@ -17,7 +17,7 @@
 
                     <div class="col-md-4">
                         <div class="notice notice-success">
-                            <strong>Aprovados</strong> {{ $questionVote->approved }} votos
+                            <strong>Aprobados</strong> {{ $questionVote->approved }} votos
                         </div>    
                     </div>
                     
@@ -39,7 +39,7 @@
                         <div class="col-md-12">
                             <div class="notice notice-lg">
                                 <div class="form-group">
-                                  {!! Form::label('approved', 'Votos aprovados') !!}
+                                  {!! Form::label('approved', 'Votos aprobados') !!}
                                   {!! Form::text('approved', null, ['class' => 'form-control'])!!}
                                 </div>
 

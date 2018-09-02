@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="col-sm-12 col-md-9">
+<div class="col-sm-12 col-md-12">
     @if($election->active == 0)
         <h3 class="page-header" style="margin-top: 0%">Elección Activa </h3>
     @else

@@ -29,7 +29,7 @@ class VotesController extends Controller
             $message = 'No puedes hacer dos votaciones en una misma elección';
             return redirect()->route('home')->with('error', $message);
         }else {
-            return view('users/votes/vote',compact('questions','cont'));
+            return view('users/votes/vote',compact('questions','cont','election'));
         }
             
     }

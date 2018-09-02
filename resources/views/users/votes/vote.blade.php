@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="col-sm-12 col-md-9">
+<div class="col-sm-12 col-md-12">
     <h3 class="page-header" style="margin-top: 0%">Votación </h3>
     @if(\Session::has('message'))
         @include('layouts.message')
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="panel panel-info">
-                <div class="panel-heading">votar</div>
+                <div class="panel-heading">Votación {{ $election->name }}</div>
                 <div class="panel-body">
                     <form action="{{ route('votes.store') }}" method="post">
                         <div class="row vote-results results">

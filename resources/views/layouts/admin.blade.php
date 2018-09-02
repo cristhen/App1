@@ -13,91 +13,69 @@
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('bootstrap/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/card_alerts.css')}}">
-    
   </head>
-
   <body>
-    @if(Auth::user()->is_admin || Auth::user()->is_master)
-      <nav class="navbar navbar-default navbar-fixed-top">
-    @elseif(Auth::user()->is_user)
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-    @endif  
+    <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <img class="pull-left" width="60px" src="{{ asset('img/apartment.png') }}" alt="Apartamento">  
           <a class="navbar-brand" href="{{ route('home') }}">
-            Unidad Familiar
+            Consorcio: {{ Auth::user()->consortiums->name }} - UF: {{ Auth::user()->uf_number  }}
           </a>  
-          
         </div>
-
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav ">
+            @if(Auth::user()->is_master)
+              <li><a href="{{ route('home') }}">Inicio</a></li>
+              <li><a href="{{ route('consortiums.index')}}">Consorcios</a></li>
+              <li><a href="{{ route('users.index') }}">Usuarios</a></li>
+              <li><a href="{{ route('questions.index')}}">Preguntas</a></li>
+              <li><a href="{{ route('elections.index') }}">Votaciones</a></li>
+            @elseif(Auth::user()->is_admin)        
+              <li><a href="{{ route('home') }}">Inicio</a></li>
+              <li><a href="{{ route('users.index') }}">Usuarios</a></li>
+              <li><a href="{{ route('questions.index')}}">Preguntas</a></li>
+              <li><a href="{{ route('elections.index') }}">Votaciones</a></li>
+            @elseif(Auth::user()->is_user)
+              <li><a href="{{ route('home') }}">Inicio</a></li>
+            @endif         
+          </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li class="dropdown active">
+              
               <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                  {{ Auth::user()->name }} <span class="caret"></span>
+                {{ Auth::user()->name }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                  <li>
-                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                    </a>
-                  </li>
-
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
+                <li>
+                  <a href="{{ route('users.edit',Auth::user()->id ) }}" class="dropdown-item">Editar perfil</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
               </ul>
             </li>
           </ul>
+        </div>
       </div>
-    </nav><br>
-    <br>
-    <br>
-    <br>
-
+    </nav>      
     <div class="container-fluid">
       <div class="row">
-        @if(Auth::user()->is_master)
-          <div class="col-lg-3 col-md-3 col-sm-4">
-            <div class="panel panel-primary">
-              <div class="panel-heading">Menu</div>
-                <div class="panel-body">
-                  
-                  <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
-                  <a class="list-group-item" href="{{ route('consortiums.index')}}">Consorcios</a>
-                  <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
-                  <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
-                  <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
-                </div>
-            </div>
-          </div>
-        @elseif(Auth::user()->is_admin)
-          <div class="col-lg-3 col-md-3 col-sm-4">
-            <div class="panel panel-primary">
-              <div class="panel-heading">Menu</div>
-                <div class="panel-body">
-                  <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
-                  <a class="list-group-item" href="{{ route('users.index') }}">Usuarios</a>
-                  <a class="list-group-item" href="{{ route('questions.index')}}">Preguntas</a>
-                  <a class="list-group-item" href="{{ route('elections.index') }}">Votaciones</a>
-                </div>
-            </div>
-          </div>
-        @elseif(Auth::user()->is_user)
-          <div class="col-lg-3 col-md-3 col-sm-4">
-            <div class="panel panel-success">
-              <div class="panel-heading">Menu</div>
-              <div class="panel-body">
-                <a class="list-group-item" href="{{ route('home') }}">Inicio</a>
-              </div>
-            </div>
-          </div>
-        @endif          
-        
         @yield('content')
-        
-        
       </div>
     </div>
     @stack('scripts')
@@ -109,6 +87,9 @@
 
     <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{asset('js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('js/responsive.bootstrap.min.js')}}"></script>
 
     <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
     
@@ -116,8 +97,20 @@
 
     <script>
       $(document).ready(function() {
-        $('#users').DataTable();
-        $('#consortium').DataTable();
+        var table = $('#users').DataTable({
+          responsive: true
+        });
+
+        var table2 = $('#consortium').DataTable({
+          responsive: true
+        });
+
+        var table3 = $('#questions').DataTable({
+          responsive: true
+        });
+
+        new $.fn.dataTable.FixedHeader(table,table2,table3);
+
         $('.selectpicker').selectpicker();
       }); 
       $(document).on('ready',funcionPrincipal());

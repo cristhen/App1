@@ -7,12 +7,12 @@
     	@include('layouts.message')
 	@endif
 	
-	<table id="consortium" class="table table-striped table-bordered" style="width:100%">
+	<table id="questions" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>
-                <th width="10%">#</th>
-                <th width="40%">Pregunta</th>
-                <th width="35%">Elección</th>
+                <th>#</th>
+                <th>Pregunta</th>
+                <th>Elección</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -23,8 +23,12 @@
                 <td>{{$question->question}}</td>
                 <td>{{$question->elections->name}}</td>
                 <th>
-                    <a href="{{ route('questions.edit',$question->id) }}" class="btn btn-info btn-sm">Editar</a>
-                    <button data-toggle="modal" data-target="#delete-{{$question->id}}" class="btn btn-danger btn-sm">Eliminar</button>
+                    <a href="{{ route('questions.edit',$question->id) }}" type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    <button data-toggle="modal" data-target="#delete-{{$question->id}}" class="btn btn-danger btn-sm" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
             	</th>
             </tr>
             @include('admin.questions.delete')

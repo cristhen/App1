@@ -43,7 +43,7 @@ class ElectionController extends Controller
     {
         if(Auth::user()->is_master){
             $elections = Election::orderBy('id','DESC')->where('active',1)->get();
-            return view('admin/elections/active',compact('elections')); 
+            return view('admin/elections/finished',compact('elections')); 
         }
         
         $elections = Election::orderBy('id','DESC')->where('active',1)->where('consortiums_id',Auth::user()->consortiums_id)->get();

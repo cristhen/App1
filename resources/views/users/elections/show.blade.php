@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="col-sm-12 col-md-9">
+<div class="col-sm-12 col-md-12">
     <h3 class="page-header" style="margin-top: 0%">Elección Finalizada </h3>
     <a class="btn btn-default block" href="{{ route('votes.finished') }}">Atras</a><br><br>
     <div class="row">

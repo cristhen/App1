@@ -16,7 +16,6 @@ use Auth;
 class UserController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -52,7 +51,7 @@ class UserController extends Controller
             $user->avatar = $file->getClientOriginalName();
         }
 
-        $user->uf_number = str_random(10);
+        $user->uf_number = $request->get('uf_number');
 
         $register = $user->save();
 
