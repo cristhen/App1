@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="panel panel-info">
-                <div class="panel-heading">Eleccion | {{ $election->name }}</div>
+                <div class="panel-heading">Eleccion | {{ $election->name }}  <strong class="pull-right">Monto Acumulado: $ {{ $election->amount }} </strong></div>
                 <div class="panel-body">
                    <div class="row vote-results results">
                     @foreach($votes as $vote)
@@ -62,7 +62,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="panel panel-info">
-                    <div class="panel-heading">Eleccion | {{ $election->name }}</div>
+                    <div class="panel-heading">Eleccion | {{ $election->name }} <strong class="pull-right">Monto Acumulado: $ {{ $election->amount }} </strong>  </div>
                     <div class="panel-body">
                        <div class="row vote-results results">
                         

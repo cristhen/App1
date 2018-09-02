@@ -29,6 +29,14 @@
     </div>
   </div>
 
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="form-group">
+      {!! Form::label('amount', 'Monto') !!}
+      {!! Form::text('amount', null, ['class' => 'form-control','placeholder' => 'Monto obtenido'])!!}
+      <span class="help-block">Monto disponible.</span> 
+    </div>
+  </div>
+
  <div class="col-lg-12 col-md-12 col-sm-12">
     <table id="tabla" class="table table-bordered table-hover">
       <tr>

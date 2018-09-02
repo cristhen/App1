@@ -12,7 +12,8 @@ class Election extends Model
         'name',
         'description',
         'active',
-        'consortiums_id'
+        'consortiums_id',
+        'amount'
     ];
 
     public function questions()

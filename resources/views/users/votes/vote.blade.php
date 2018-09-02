@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="panel panel-info">
-                <div class="panel-heading">Votación {{ $election->name }}</div>
+                <div class="panel-heading">Votación {{ $election->name }} <strong class="pull-right">Monto Acumulado: $ {{ $election->amount }} </strong></div>
                 <div class="panel-body">
                     <form action="{{ route('votes.store') }}" method="post">
                         <div class="row vote-results results">
