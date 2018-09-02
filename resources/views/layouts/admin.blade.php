@@ -27,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img class="pull-left" width="60px" src="{{ asset('img/apartment.png') }}" alt="Apartamento">  
+          <img class="pull-left" width="60px" src="{{ asset('img/edif.png') }}" alt="Apartamento">  
           <a class="navbar-brand" href="{{ route('home') }}">
             Consorcio: {{ Auth::user()->consortiums->name }} - UF: {{ Auth::user()->uf_number  }}
           </a>  
