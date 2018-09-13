@@ -12,13 +12,16 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="panel panel-info">
-                <div class="panel-heading">Votación {{ $election->name }} <strong class="pull-right">Monto Acumulado: $ {{ $election->amount }} </strong></div>
+                <div class="panel-heading">
+                    <p>Votación {{ $election->name }} </p>    
+                    <strong >Capital disponible: $ {{ $election->amount }} </strong>
+                </div>
                 <div class="panel-body">
                     <form action="{{ route('votes.store') }}" method="post">
                         <div class="row vote-results results">
                             @csrf
                             @foreach($questions as $question)
-                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <h4>
                                         <span class="label label-default">{{ $question->question}}</span><br>
                                     </h4>

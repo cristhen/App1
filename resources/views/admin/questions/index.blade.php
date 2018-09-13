@@ -19,17 +19,22 @@
         <tbody>
         	@foreach($questions as $question)
             <tr>
-                <td>{{$question->id}}</td>
-                <td>{{$question->question}}</td>
-                <td>{{$question->elections->name}}</td>
-                <th>
-                    <a href="{{ route('questions.edit',$question->id) }}" type="button" class="btn btn-info btn-sm" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-                    <button data-toggle="modal" data-target="#delete-{{$question->id}}" class="btn btn-danger btn-sm" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-            	</th>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <td>{{$question->id}}</td>
+                    <td>
+                        {{ str_limit($question->question, 40) }}
+                    
+                    </td>
+                    <td>{{$question->elections->name}}</td>
+                    <td>
+                        <a href="{{ route('questions.edit',$question->id) }}" type="button" class="btn btn-info btn-sm" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <button data-toggle="modal" data-target="#delete-{{$question->id}}" class="btn btn-danger btn-sm" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </div>
             </tr>
             @include('admin.questions.delete')
             @endforeach

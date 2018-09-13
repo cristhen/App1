@@ -32,8 +32,8 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="form-group">
       {!! Form::label('amount', 'Monto') !!}
-      {!! Form::text('amount', null, ['class' => 'form-control','placeholder' => 'Monto obtenido'])!!}
-      <span class="help-block">Monto disponible.</span> 
+      {!! Form::text('amount', null, ['class' => 'form-control','placeholder' => 'Capital disponible'])!!}
+      <span class="help-block">Capital disponible.</span> 
     </div>
   </div>
 
